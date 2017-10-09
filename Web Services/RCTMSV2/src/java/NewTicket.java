@@ -36,7 +36,7 @@ public class NewTicket extends HttpServlet {
             
             out.println("<!DOCTYPE html>\n" +
 "<html>\n" +
-"<title>W3.CSS Template</title>\n" +
+"<title>Create New Ticket - RCTMS</title>\n" +
 "<head>\n" +
 "<meta charset=\"UTF-8\">\n" +
 "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n" +
