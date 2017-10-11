@@ -2,11 +2,9 @@
 
 namespace app\controllers;
 
-class TranscriptController extends \yii\web\Controller
-{
-    public function actionIndex()
-    {
-        return $this->render('index');
-    }
+use yii\rest\ActiveController;
 
+class TranscriptController extends ActiveController
+{
+    public $modelClass = 'app\models\Transcript';
 }
