@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 /* @var $this yii\web\View */
 ?>
 <h1>department/index</h1>
@@ -42,4 +41,3 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
->>>>>>> 007fd151378ba9c2a5146fc6e66f726637ee6867

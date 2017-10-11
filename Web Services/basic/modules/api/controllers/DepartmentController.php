@@ -33,4 +33,25 @@ class DepartmentController extends \yii\web\Controller
 		}
 
 	}
+
+	public function actionView($id)
+  {
+ 
+    $model=$this->findModel($id);
+ 
+    echo json_encode(array('status'=>1,'data'=>array_filter($model->attributes)),JSON_PRETTY_PRINT);
+ 
+  } 
+  /* function to find the requested record/model */
+  protected function findModel($id)
+  {
+      if (($model = Department::findOne($id)) !== null) {
+      return $model;
+      } else {
+ 
+    echo json_encode(array('status'=>0,'error_code'=>400,'message'=>'Bad request'),JSON_PRETTY_PRINT);
+    exit;
+      }
+  }
+	
 }
