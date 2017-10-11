@@ -53,5 +53,22 @@ class DepartmentController extends \yii\web\Controller
     exit;
       }
   }
+
+  public function actionUpdate($id)
+  {
+      $params=$_REQUEST;
+ 
+      $model = $this->findModel($id);
+ 
+      $model->attributes=$params;
+ 
+      if ($model->save()) {
+      echo json_encode(array('status'=>1,'data'=>array_filter($model->attributes)),JSON_PRETTY_PRINT);
+      } 
+      else {
+      echo json_encode(array('status'=>0,'error_code'=>400,'errors'=>$model->errors),JSON_PRETTY_PRINT);
+      }
+ 
+  }
 	
 }
