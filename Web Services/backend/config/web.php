@@ -42,10 +42,9 @@ $config = [
         
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'enableStrictParsing' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'department'],
+                ['class' => 'yii\rest\UrlRule', 'controller' => ['department','guest']],
             ],
         ]
         
