@@ -44,7 +44,7 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => ['department','guest']],
+                ['class' => 'yii\rest\UrlRule', 'controller' => ['department','guest','room']],
             ],
         ]
         
