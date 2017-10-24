@@ -42,14 +42,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     <h5>Dashboard</h5>
   </div>
   <div class="w3-bar-block">
-    <div class="w3-bar-block">
     <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-    <a href="index.jsp" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
-    <a href="ticketview.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>  Tickets</a>
+    <a href="index.jsp" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>  Overview</a>
+    <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-ticket"></i>  Tickets</a>
     <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
-  </div>
   </div>
 </nav>
 
@@ -66,7 +64,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
   </header>
 
   <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
+    <div class="w3-third">
       <div class="w3-container w3-blue w3-padding-16">
         <div class="w3-left"><i class="fa fa-ticket w3-xxxlarge"></i></div>
         <div class="w3-right">
@@ -76,7 +74,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <h4>Pending Tickets</h4>
       </div>
     </div>
-    <div class="w3-quarter">
+    <div class="w3-third">
       <div class="w3-container w3-green w3-padding-16">
         <div class="w3-left"><i class="fa fa-check w3-xxxlarge"></i></div>
         <div class="w3-right">
@@ -86,7 +84,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <h4>Tickets Resolved</h4>
       </div>
     </div>
-    <div class="w3-quarter">
+    <div class="w3-third">
       <div class="w3-container w3-pink w3-padding-16">
         <div class="w3-left"><i class="fa fa-angle-double-up w3-xxxlarge"></i></div>
         <div class="w3-right">
@@ -96,41 +94,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         <h4>Escalated</h4>
       </div>
     </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-purple w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-        <div class="w3-right">
-          <h3>70</h3>
-        </div>
-        <div class="w3-clear"></div>
-        <h4>Guests</h4>
-      </div>
-    </div>
-  </div>
 
-  <table border="2">
-              <th>Guest Name</th>
-              <th>Room Number</th>
-              <th>Category</th>
-              <th>Department</th>
-              <c:forEach items="$(requestScope.list)" var="ticketz">
-                  <tr>  
-                   <td>${ticketz.guestName}</td>
-                  <td>${ticketz.roomNum}</td>
-                  <td>${ticketz.Category}</td>
-                  <td>${ticketz.dept}</td>
-                  </tr>
-              </c:forEach>
-     
-  </table>
-
-  
   
 
   <!-- Footer -->
   <footer class="w3-container w3-padding-16 w3-light-grey">
-    <h4>RTMS</h4>
-    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">Me</a></p>
+    <h4>FOOTER</h4>
+    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
   </footer>
 
   <!-- End page content -->
