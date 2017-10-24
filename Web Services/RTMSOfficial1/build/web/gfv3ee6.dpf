@@ -7,7 +7,4 @@
       <description>Keep a copy of the generated servlet class' java code.</description>
     </property>
   </jsp-config>
-  <webservice-description>
-    <webservice-description-name>service1</webservice-description-name>
-  </webservice-description>
 </glassfish-web-app>

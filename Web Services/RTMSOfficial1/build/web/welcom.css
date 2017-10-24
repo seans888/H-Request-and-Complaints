@@ -1,0 +1,32 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 24, 2017, 9:24:06 PM
+    Author     : user
+*/
+
+
+h1 {
+   font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+      max-width: 360px;
+  margin: 0 auto 100px;
+  padding-top: 50px;
+  text-align: center;
+  font-size: 100px;
+}
+
+a {
+   font-family: 'Roboto', sans-serif;
+    color: #ffffff;
+      max-width: 360px;
+  margin: 0 auto 100px;
+  padding-top: 50px;
+  text-align: center;
+  font-size: 100px;
+}
+
+
