@@ -12,7 +12,7 @@ use Yii;
  * @property string $dept_description
  *
  * @property Category[] $categories
- * @property Employee1[] $employee1s
+ * @property Employee[] $employees
  */
 class Department extends \yii\db\ActiveRecord
 {
@@ -59,8 +59,8 @@ class Department extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEmployee1s()
+    public function getEmployees()
     {
-        return $this->hasMany(Employee1::className(), ['department_id' => 'id']);
+        return $this->hasMany(Employee::className(), ['department_id' => 'id']);
     }
 }
