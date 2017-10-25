@@ -16,6 +16,7 @@ use Yii;
  * @property string $description
  * @property string $time_open
  * @property string $time_close
+ * @property string $status
  *
  * @property Category $category
  * @property CheckIn $checkIn
@@ -43,6 +44,7 @@ class Ticket extends \yii\db\ActiveRecord
             [['check_in_id', 'category_id', 'employee_responsible_id', 'employee_create_id', 'level'], 'integer'],
             [['description'], 'string'],
             [['time_open', 'time_close'], 'safe'],
+            [['status'], 'string', 'max' => 10],
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['category_id' => 'id']],
             [['check_in_id'], 'exist', 'skipOnError' => true, 'targetClass' => CheckIn::className(), 'targetAttribute' => ['check_in_id' => 'id']],
             [['employee_create_id'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['employee_create_id' => 'id']],
@@ -65,6 +67,7 @@ class Ticket extends \yii\db\ActiveRecord
             'description' => 'Description',
             'time_open' => 'Time Open',
             'time_close' => 'Time Close',
+            'status' => 'Status',
         ];
     }
 

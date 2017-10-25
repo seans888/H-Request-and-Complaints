@@ -19,7 +19,7 @@ class TicketSearch extends Ticket
     {
         return [
             [['id', 'check_in_id', 'category_id', 'employee_responsible_id', 'employee_create_id', 'level'], 'integer'],
-            [['description', 'time_open', 'time_close'], 'safe'],
+            [['description', 'time_open', 'time_close', 'status'], 'safe'],
         ];
     }
 
@@ -69,7 +69,8 @@ class TicketSearch extends Ticket
             'time_close' => $this->time_close,
         ]);
 
-        $query->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }
