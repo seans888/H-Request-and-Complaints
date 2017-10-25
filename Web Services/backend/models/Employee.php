@@ -8,16 +8,14 @@ use Yii;
  * This is the model class for table "employee".
  *
  * @property integer $id
- * @property integer $department_id
- * @property string $fname
- * @property string $surname
+ * @property string $firstName
+ * @property string $lastName
  * @property integer $level
+ * @property integer $department_id
  *
  * @property Department $department
  * @property Ticket[] $tickets
  * @property Ticket[] $tickets0
- * @property Transcript[] $transcripts
- * @property Transcript[] $transcripts0
  */
 class Employee extends \yii\db\ActiveRecord
 {
@@ -35,9 +33,9 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['department_id', 'fname', 'surname', 'level'], 'required'],
-            [['department_id', 'level'], 'integer'],
-            [['fname', 'surname'], 'string', 'max' => 45],
+            [['firstName', 'lastName', 'level', 'department_id'], 'required'],
+            [['level', 'department_id'], 'integer'],
+            [['firstName', 'lastName'], 'string', 'max' => 45],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
         ];
     }
@@ -49,10 +47,10 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'department_id' => 'Department ID',
-            'fname' => 'Fname',
-            'surname' => 'Surname',
+            'firstName' => 'First Name',
+            'lastName' => 'Last Name',
             'level' => 'Level',
+            'department_id' => 'Department ID',
         ];
     }
 
@@ -69,7 +67,7 @@ class Employee extends \yii\db\ActiveRecord
      */
     public function getTickets()
     {
-        return $this->hasMany(Ticket::className(), ['emp_repond_id' => 'id']);
+        return $this->hasMany(Ticket::className(), ['employee_create_id' => 'id']);
     }
 
     /**
@@ -77,22 +75,6 @@ class Employee extends \yii\db\ActiveRecord
      */
     public function getTickets0()
     {
-        return $this->hasMany(Ticket::className(), ['emp_create_id' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTranscripts()
-    {
-        return $this->hasMany(Transcript::className(), ['by_employee' => 'id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getTranscripts0()
-    {
-        return $this->hasMany(Transcript::className(), ['current_emp_resp' => 'id']);
+        return $this->hasMany(Ticket::className(), ['employee_responsible_id' => 'id']);
     }
 }

@@ -8,7 +8,7 @@ use Yii;
  * This is the model class for table "room".
  *
  * @property integer $id
- * @property integer $room_no
+ * @property integer $roomno
  *
  * @property CheckIn[] $checkIns
  */
@@ -28,8 +28,8 @@ class Room extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['room_no'], 'required'],
-            [['room_no'], 'integer'],
+            [['roomno'], 'required'],
+            [['roomno'], 'integer'],
         ];
     }
 
@@ -40,7 +40,7 @@ class Room extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'room_no' => 'Room No',
+            'roomno' => 'Roomno',
         ];
     }
 

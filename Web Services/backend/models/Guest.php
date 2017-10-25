@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "guest".
  *
  * @property integer $id
- * @property string $fname
- * @property string $surname
+ * @property string $firstName
+ * @property string $lastName
  *
  * @property CheckIn[] $checkIns
  */
@@ -29,8 +29,8 @@ class Guest extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['fname', 'surname'], 'required'],
-            [['fname', 'surname'], 'string', 'max' => 45],
+            [['firstName', 'lastName'], 'required'],
+            [['firstName', 'lastName'], 'string', 'max' => 45],
         ];
     }
 
@@ -41,8 +41,8 @@ class Guest extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'fname' => 'Fname',
-            'surname' => 'Surname',
+            'firstName' => 'First Name',
+            'lastName' => 'Last Name',
         ];
     }
 
@@ -51,6 +51,6 @@ class Guest extends \yii\db\ActiveRecord
      */
     public function getCheckIns()
     {
-        return $this->hasMany(CheckIn::className(), ['customer_id' => 'id']);
+        return $this->hasMany(CheckIn::className(), ['guest_id' => 'id']);
     }
 }

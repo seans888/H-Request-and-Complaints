@@ -8,10 +8,10 @@ use Yii;
  * This is the model class for table "category".
  *
  * @property integer $id
+ * @property string $name
+ * @property string $description
+ * @property string $escalation_time
  * @property integer $department_id
- * @property string $title
- * @property string $desc
- * @property string $esc_time
  *
  * @property Department $department
  * @property Ticket[] $tickets
@@ -32,11 +32,10 @@ class Category extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['department_id', 'title', 'desc', 'esc_time'], 'required'],
+            [['name', 'description', 'escalation_time', 'department_id'], 'required'],
+            [['escalation_time'], 'safe'],
             [['department_id'], 'integer'],
-            [['desc'], 'string'],
-            [['esc_time'], 'safe'],
-            [['title'], 'string', 'max' => 45],
+            [['name', 'description'], 'string', 'max' => 45],
             [['department_id'], 'exist', 'skipOnError' => true, 'targetClass' => Department::className(), 'targetAttribute' => ['department_id' => 'id']],
         ];
     }
@@ -48,10 +47,10 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'name' => 'Name',
+            'description' => 'Description',
+            'escalation_time' => 'Escalation Time',
             'department_id' => 'Department ID',
-            'title' => 'Title',
-            'desc' => 'Desc',
-            'esc_time' => 'Esc Time',
         ];
     }
 

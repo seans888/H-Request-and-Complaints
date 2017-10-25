@@ -8,10 +8,13 @@ use Yii;
  * This is the model class for table "check_in".
  *
  * @property integer $id
- * @property integer $customer_id
+ * @property string $check_in
+ * @property string $check_out
+ * @property integer $guest_id
  * @property integer $room_id
+ * @property string $status
  *
- * @property Guest $customer
+ * @property Guest $guest
  * @property Room $room
  * @property Ticket[] $tickets
  */
@@ -31,9 +34,11 @@ class CheckIn extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['customer_id', 'room_id'], 'required'],
-            [['customer_id', 'room_id'], 'integer'],
-            [['customer_id'], 'exist', 'skipOnError' => true, 'targetClass' => Guest::className(), 'targetAttribute' => ['customer_id' => 'id']],
+            [['check_in', 'check_out'], 'safe'],
+            [['guest_id', 'room_id', 'status'], 'required'],
+            [['guest_id', 'room_id'], 'integer'],
+            [['status'], 'string', 'max' => 15],
+            [['guest_id'], 'exist', 'skipOnError' => true, 'targetClass' => Guest::className(), 'targetAttribute' => ['guest_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
         ];
     }
@@ -45,17 +50,20 @@ class CheckIn extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'customer_id' => 'Customer ID',
+            'check_in' => 'Check In',
+            'check_out' => 'Check Out',
+            'guest_id' => 'Guest ID',
             'room_id' => 'Room ID',
+            'status' => 'Status',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCustomer()
+    public function getGuest()
     {
-        return $this->hasOne(Guest::className(), ['id' => 'customer_id']);
+        return $this->hasOne(Guest::className(), ['id' => 'guest_id']);
     }
 
     /**

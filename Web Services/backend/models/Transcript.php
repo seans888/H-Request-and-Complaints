@@ -8,14 +8,10 @@ use Yii;
  * This is the model class for table "transcript".
  *
  * @property integer $id
- * @property integer $ticket_id
  * @property string $description
  * @property string $time
- * @property integer $by_employee
- * @property integer $current_emp_resp
+ * @property integer $ticket_id
  *
- * @property Employee $byEmployee
- * @property Employee $currentEmpResp
  * @property Ticket $ticket
  */
 class Transcript extends \yii\db\ActiveRecord
@@ -34,12 +30,10 @@ class Transcript extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['ticket_id', 'description', 'time', 'by_employee', 'current_emp_resp'], 'required'],
-            [['ticket_id', 'by_employee', 'current_emp_resp'], 'integer'],
+            [['description', 'ticket_id'], 'required'],
             [['description'], 'string'],
             [['time'], 'safe'],
-            [['by_employee'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['by_employee' => 'id']],
-            [['current_emp_resp'], 'exist', 'skipOnError' => true, 'targetClass' => Employee::className(), 'targetAttribute' => ['current_emp_resp' => 'id']],
+            [['ticket_id'], 'integer'],
             [['ticket_id'], 'exist', 'skipOnError' => true, 'targetClass' => Ticket::className(), 'targetAttribute' => ['ticket_id' => 'id']],
         ];
     }
@@ -51,28 +45,10 @@ class Transcript extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'ticket_id' => 'Ticket ID',
             'description' => 'Description',
             'time' => 'Time',
-            'by_employee' => 'By Employee',
-            'current_emp_resp' => 'Current Emp Resp',
+            'ticket_id' => 'Ticket ID',
         ];
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getByEmployee()
-    {
-        return $this->hasOne(Employee::className(), ['id' => 'by_employee']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getCurrentEmpResp()
-    {
-        return $this->hasOne(Employee::className(), ['id' => 'current_emp_resp']);
     }
 
     /**

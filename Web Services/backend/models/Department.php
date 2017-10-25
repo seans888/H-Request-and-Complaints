@@ -8,8 +8,8 @@ use Yii;
  * This is the model class for table "department".
  *
  * @property integer $id
- * @property string $dept_name
- * @property string $dept_description
+ * @property string $name
+ * @property string $description
  *
  * @property Category[] $categories
  * @property Employee[] $employees
@@ -30,9 +30,9 @@ class Department extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['dept_name', 'dept_description'], 'required'],
-            [['dept_description'], 'string'],
-            [['dept_name'], 'string', 'max' => 45],
+            [['name', 'description'], 'required'],
+            [['description'], 'string'],
+            [['name'], 'string', 'max' => 45],
         ];
     }
 
@@ -43,8 +43,8 @@ class Department extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'dept_name' => 'Dept Name',
-            'dept_description' => 'Dept Description',
+            'name' => 'Name',
+            'description' => 'Description',
         ];
     }
 
