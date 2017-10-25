@@ -10,26 +10,30 @@
  */
 public class Guest {
 
-    int id;
-    String firstName, lastName;
+    private int id;
+    private String firstName, lastName;
 
     public int getId() {
         return id;
     }
-    public String getFirstName(){
+
+    public String getFirstName() {
         return firstName;
     }
-    public String getLastName(){
+
+    public String getLastName() {
         return lastName;
     }
-    
-    public void setId(int idtfy){
+
+    public void setId(int idtfy) {
         this.id = idtfy;
     }
-    public void setFirstName(String fName){
+
+    public void setFirstName(String fName) {
         this.firstName = fName;
     }
-    public void setLastName(String lName){
+
+    public void setLastName(String lName) {
         this.lastName = lName;
     }
 }

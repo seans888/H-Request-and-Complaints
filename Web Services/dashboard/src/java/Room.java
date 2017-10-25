@@ -9,5 +9,22 @@
  * @author Mathew
  */
 public class Room {
+
+    private int id, roomno;
+
+    public int getId() {
+        return id;
+    }
+
+    public int getRoomNo() {
+        return roomno;
+    }
+
+    public void setId(int idtfy){
+        this.id = idtfy;
+    }
     
+    public void setRoomNo(int roomNum){
+        this.roomno = roomNum;
+    }
 }

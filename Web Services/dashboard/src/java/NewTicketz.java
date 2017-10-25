@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +25,6 @@ public class NewTicketz extends HttpServlet {
  
     String guestName, roomNum, dept, category;
     String query;
-    
     Connection conn;    
     Statement state;
     ResultSet res;
