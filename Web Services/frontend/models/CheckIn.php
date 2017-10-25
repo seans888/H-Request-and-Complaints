@@ -12,6 +12,7 @@ use Yii;
  * @property string $check_out
  * @property integer $guest_id
  * @property integer $room_id
+ * @property string $status
  *
  * @property Guest $guest
  * @property Room $room
@@ -36,6 +37,7 @@ class CheckIn extends \yii\db\ActiveRecord
             [['check_in', 'check_out'], 'safe'],
             [['guest_id', 'room_id'], 'required'],
             [['guest_id', 'room_id'], 'integer'],
+            [['status'], 'string', 'max' => 15],
             [['guest_id'], 'exist', 'skipOnError' => true, 'targetClass' => Guest::className(), 'targetAttribute' => ['guest_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Room::className(), 'targetAttribute' => ['room_id' => 'id']],
         ];
@@ -52,6 +54,7 @@ class CheckIn extends \yii\db\ActiveRecord
             'check_out' => 'Check Out',
             'guest_id' => 'Guest ID',
             'room_id' => 'Room ID',
+            'status' => 'Status',
         ];
     }
 

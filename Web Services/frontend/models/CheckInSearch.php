@@ -19,7 +19,7 @@ class CheckInSearch extends CheckIn
     {
         return [
             [['id', 'guest_id', 'room_id'], 'integer'],
-            [['check_in', 'check_out'], 'safe'],
+            [['check_in', 'check_out', 'status'], 'safe'],
         ];
     }
 
@@ -65,6 +65,8 @@ class CheckInSearch extends CheckIn
             'guest_id' => $this->guest_id,
             'room_id' => $this->room_id,
         ]);
+
+        $query->andFilterWhere(['like', 'status', $this->status]);
 
         return $dataProvider;
     }

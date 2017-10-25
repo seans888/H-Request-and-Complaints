@@ -29,8 +29,8 @@ class Guest extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['firstName', 'lastName'], 'required'],
-            [['firstName', 'lastName'], 'string', 'max' => 45],
+        [['firstName', 'lastName'], 'required'],
+        [['firstName', 'lastName'], 'string', 'max' => 45],
         ];
     }
 
@@ -40,9 +40,10 @@ class Guest extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'firstName' => 'First Name',
-            'lastName' => 'Last Name',
+        'id' => 'ID',
+        'firstName' => 'First Name',
+        'lastName' => 'Last Name',
+        'fullName' => Yii::t('app', 'Full Name')
         ];
     }
 
@@ -53,4 +54,9 @@ class Guest extends \yii\db\ActiveRecord
     {
         return $this->hasMany(CheckIn::className(), ['guest_id' => 'id']);
     }
+
+    public function getFullName() {
+        return $this->firstName . ' ' . $this->lastName;
+ }
+ 
 }

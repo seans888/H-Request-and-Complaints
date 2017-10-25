@@ -24,7 +24,7 @@
         <%
             String id = request.getParameter("userid");
             String driver = "com.mysql.jdbc.Driver";
-            String connectionUrl = "jdbc:mysql://localhost:3306/ticketms";
+            String connectionUrl = "jdbc:mysql://localhost:3306/rtmsdb";
             String userid = "root";
             String password = "";
             try {
@@ -86,11 +86,11 @@
                     int guestCount = 0;
                     try {
                         connection = DriverManager.getConnection(connectionUrl, userid, password);
-                        statement = connection.createStatement();
-                        String sql = "select count(*) from guest";
+                        statement = connection.createStatement();   
+                        String sql = "select count(*) from check_in where status = 'Active'";
                         resultSet = statement.executeQuery(sql);
                         while (resultSet.next()) {
-                            guestCount = Integer.parseInt(resultSet.getString("count(*)"));
+                           guestCount = Integer.parseInt(resultSet.getString("count(*)"));
                         }
                         connection.close();
                     } catch (Exception e) {

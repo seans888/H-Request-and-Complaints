@@ -33,6 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'check_out',
             'guest_id',
             'room_id',
+            'status',
         ],
     ]) ?>
 
