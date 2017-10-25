@@ -86,11 +86,11 @@
                     int guestCount = 0;
                     try {
                         connection = DriverManager.getConnection(connectionUrl, userid, password);
-                        statement = connection.createStatement();   
+                        statement = connection.createStatement();
                         String sql = "select count(*) from check_in where status = 'Active'";
                         resultSet = statement.executeQuery(sql);
                         while (resultSet.next()) {
-                           guestCount = Integer.parseInt(resultSet.getString("count(*)"));
+                            guestCount = Integer.parseInt(resultSet.getString("count(*)"));
                         }
                         connection.close();
                     } catch (Exception e) {
@@ -134,8 +134,8 @@
                         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                         <div class="w3-right">
                             <h3><%
-                            out.println(guestCount);
-                            %></h3>
+                                out.println(guestCount);
+                                %></h3>
                         </div>
                         <div class="w3-clear"></div>
                         <h4>Guests</h4>
@@ -156,50 +156,55 @@
                 <div class="w3-grey">
                     <div class="w3-container w3-center w3-padding w3-green" style="width:90%">90%</div>
                 </div>
-                <p>Occupation Ratio</p>
+                <%
+                    float occRatio = 0;
+                    occRatio = (guestCount / (float) 20) * 100;
+                    String formattedOcc = String.format("%.0f", occRatio) + "%";
+                %>
+                <p>Tickets Resolved to Escalation Ratio</p>
                 <div class="w3-grey">
-                    <div class="w3-container w3-center w3-padding w3-purple" style="width:85%">85%</div>
+                    <div class="w3-container w3-center w3-padding w3-purple" style="width:<%out.println(formattedOcc);%>"><%out.println(formattedOcc);%></div>
                 </div>
-                <p>Complaint Rate</p>
-                <div class="w3-grey">
-                    <div class="w3-container w3-center w3-padding w3-pink" style="width:15%">10%</div>
+                         <p>Complaint Rate</p>
+                         <div class="w3-grey">
+                         <div class="w3-container w3-center w3-padding w3-pink" style="width:15%">10%</div>
+                    </div>
                 </div>
+                <hr>
+
+                <!-- Footer -->
+                <footer class="w3-container w3-padding-16 w3-light-grey">
+                    <h4>FOOTER</h4>
+                    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+                </footer>
+
+                <!-- End page content -->
             </div>
-            <hr>
 
-            <!-- Footer -->
-            <footer class="w3-container w3-padding-16 w3-light-grey">
-                <h4>FOOTER</h4>
-                <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-            </footer>
+            <script>
+                // Get the Sidebar
+                var mySidebar = document.getElementById("mySidebar");
 
-            <!-- End page content -->
-        </div>
+                // Get the DIV with overlay effect
+                var overlayBg = document.getElementById("myOverlay");
 
-        <script>
-            // Get the Sidebar
-            var mySidebar = document.getElementById("mySidebar");
-
-            // Get the DIV with overlay effect
-            var overlayBg = document.getElementById("myOverlay");
-
-            // Toggle between showing and hiding the sidebar, and add overlay effect
-            function w3_open() {
-                if (mySidebar.style.display === 'block') {
-                    mySidebar.style.display = 'none';
-                    overlayBg.style.display = "none";
-                } else {
-                    mySidebar.style.display = 'block';
-                    overlayBg.style.display = "block";
+                // Toggle between showing and hiding the sidebar, and add overlay effect
+                function w3_open() {
+                    if (mySidebar.style.display === 'block') {
+                        mySidebar.style.display = 'none';
+                        overlayBg.style.display = "none";
+                    } else {
+                        mySidebar.style.display = 'block';
+                        overlayBg.style.display = "block";
+                    }
                 }
-            }
 
-            // Close the sidebar with the close button
-            function w3_close() {
-                mySidebar.style.display = "none";
-                overlayBg.style.display = "none";
-            }
-        </script>
+                // Close the sidebar with the close button
+                function w3_close() {
+                    mySidebar.style.display = "none";
+                    overlayBg.style.display = "none";
+                }
+            </script>
 
     </body>
 </html>
