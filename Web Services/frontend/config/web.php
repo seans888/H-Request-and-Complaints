@@ -7,14 +7,10 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'modules' => [
-        'api' => [
-        'class' => 'app\modules\api\Api'],
-    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'ariana',
+            'cookieValidationKey' => 'qwert',
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -47,13 +43,14 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
-            'rules' => ['class' => 'yii\rest\UrlRule', 'controller' => 'department'
+            'rules' => [
             ],
         ],
         
     ],
     'params' => $params,
 ];
+
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
