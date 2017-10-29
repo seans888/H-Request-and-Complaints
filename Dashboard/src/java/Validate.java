@@ -25,7 +25,7 @@ public class Validate extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
                          
 
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ticketms", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rtmsdb", "root", "");
             
          
             
