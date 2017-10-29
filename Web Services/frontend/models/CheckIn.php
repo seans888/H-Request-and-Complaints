@@ -81,4 +81,6 @@ class CheckIn extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Ticket::className(), ['check_in_id' => 'id']);
     }
+
+    
 }

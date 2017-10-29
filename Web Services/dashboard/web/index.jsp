@@ -35,6 +35,32 @@
             Connection connection = null;
             Statement statement = null;
             ResultSet resultSet = null;
+
+            int guestCount = 0, activeTix = 0, closedTix = 0, escCount = 0;
+            try {
+                connection = DriverManager.getConnection(connectionUrl, userid, password);
+                statement = connection.createStatement();
+                String sql = "select count(*) from check_in where status = 'Active'";
+                resultSet = statement.executeQuery(sql);
+                while (resultSet.next()) {
+                    guestCount = Integer.parseInt(resultSet.getString("count(*)"));
+                }
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            try {
+                connection = DriverManager.getConnection(connectionUrl, userid, password);
+                statement = connection.createStatement();
+                String sql = "select count(*) from ticket where status = 'Open'";
+                resultSet = statement.executeQuery(sql);
+                while (resultSet.next()) {
+                    activeTix = Integer.parseInt(resultSet.getString("count(*)"));
+                }
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         %>
         <!-- Top container -->
         <div class="w3-bar w3-top w3-blue w3-large" style="z-index:4">
@@ -82,26 +108,14 @@
             </header>
 
             <div class="w3-row-padding w3-margin-bottom">
-                <%
-                    int guestCount = 0;
-                    try {
-                        connection = DriverManager.getConnection(connectionUrl, userid, password);
-                        statement = connection.createStatement();
-                        String sql = "select count(*) from check_in where status = 'Active'";
-                        resultSet = statement.executeQuery(sql);
-                        while (resultSet.next()) {
-                            guestCount = Integer.parseInt(resultSet.getString("count(*)"));
-                        }
-                        connection.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                %>
+
                 <div class="w3-quarter">
                     <div class="w3-container w3-blue w3-padding-16">
                         <div class="w3-left"><i class="fa fa-ticket w3-xxxlarge"></i></div>
                         <div class="w3-right">
-                            <h3></h3>
+                            <h3><%
+                                out.println(activeTix);
+                                %></h3>
                         </div>
                         <div class="w3-clear"></div>
                         <h4>Pending Tickets</h4>
@@ -165,46 +179,46 @@
                 <div class="w3-grey">
                     <div class="w3-container w3-center w3-padding w3-purple" style="width:<%out.println(formattedOcc);%>"><%out.println(formattedOcc);%></div>
                 </div>
-                         <p>Complaint Rate</p>
-                         <div class="w3-grey">
-                         <div class="w3-container w3-center w3-padding w3-pink" style="width:15%">10%</div>
-                    </div>
+                <p>Escalation Rate</p>
+                <div class="w3-grey">
+                    <div class="w3-container w3-center w3-padding w3-pink" style="width:15%">10%</div>
                 </div>
-                <hr>
-
-                <!-- Footer -->
-                <footer class="w3-container w3-padding-16 w3-light-grey">
-                    <h4>FOOTER</h4>
-                    <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-                </footer>
-
-                <!-- End page content -->
             </div>
+            <hr>
 
-            <script>
-                // Get the Sidebar
-                var mySidebar = document.getElementById("mySidebar");
+            <!-- Footer -->
+            <footer class="w3-container w3-padding-16 w3-light-grey">
+                <h4>FOOTER</h4>
+                <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+            </footer>
 
-                // Get the DIV with overlay effect
-                var overlayBg = document.getElementById("myOverlay");
+            <!-- End page content -->
+        </div>
 
-                // Toggle between showing and hiding the sidebar, and add overlay effect
-                function w3_open() {
-                    if (mySidebar.style.display === 'block') {
-                        mySidebar.style.display = 'none';
-                        overlayBg.style.display = "none";
-                    } else {
-                        mySidebar.style.display = 'block';
-                        overlayBg.style.display = "block";
-                    }
-                }
+        <script>
+            // Get the Sidebar
+            var mySidebar = document.getElementById("mySidebar");
 
-                // Close the sidebar with the close button
-                function w3_close() {
-                    mySidebar.style.display = "none";
+            // Get the DIV with overlay effect
+            var overlayBg = document.getElementById("myOverlay");
+
+            // Toggle between showing and hiding the sidebar, and add overlay effect
+            function w3_open() {
+                if (mySidebar.style.display === 'block') {
+                    mySidebar.style.display = 'none';
                     overlayBg.style.display = "none";
+                } else {
+                    mySidebar.style.display = 'block';
+                    overlayBg.style.display = "block";
                 }
-            </script>
+            }
+
+            // Close the sidebar with the close button
+            function w3_close() {
+                mySidebar.style.display = "none";
+                overlayBg.style.display = "none";
+            }
+        </script>
 
     </body>
 </html>

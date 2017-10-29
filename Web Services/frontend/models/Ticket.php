@@ -40,7 +40,7 @@ class Ticket extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['check_in_id', 'category_id', 'employee_responsible_id', 'employee_create_id', 'level', 'description'], 'required'],
+            [['check_in_id', 'category_id', 'employee_responsible_id', 'employee_create_id', 'description'], 'required'],
             [['check_in_id', 'category_id', 'employee_responsible_id', 'employee_create_id', 'level'], 'integer'],
             [['description'], 'string'],
             [['time_open', 'time_close'], 'safe'],

@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'description:ntext',
             'time_open',
             'time_close',
+            'status',
         ],
     ]) ?>
 
