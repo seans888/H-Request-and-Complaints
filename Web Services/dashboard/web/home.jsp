@@ -85,8 +85,8 @@
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            
-            float tixToEscRatio = closedTix/escCount;
+
+            float tixToEscRatio = closedTix / escCount;
         %>
         <!-- Top container -->
         <div class="w3-bar w3-top w3-blue w3-large" style="z-index:4">
@@ -204,6 +204,10 @@
                     float occRatio = 0;
                     occRatio = (guestCount / (float) 20) * 100;
                     String formattedOcc = String.format("%.0f", occRatio) + "%";
+
+                    float escRatio = 0;
+                    escRatio = ((float)escCount/(float)activeTix)*100;
+                    String formattedEsc = String.format("%.0f", escRatio) + "%";
                 %>
                 <p>Occupation Ratio</p>
                 <div class="w3-grey">
@@ -211,7 +215,7 @@
                 </div>
                 <p>Escalation Rate</p>
                 <div class="w3-grey">
-                    <div class="w3-container w3-center w3-padding w3-pink" style="width:15%">10%</div>
+                    <div class="w3-container w3-center w3-padding w3-pink" style="width:<%out.println(formattedEsc);%>"><%out.println(formattedEsc);%></div>
                 </div>
             </div>
             <hr>
