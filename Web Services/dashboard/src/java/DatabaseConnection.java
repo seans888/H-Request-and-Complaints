@@ -19,7 +19,7 @@ class DatabaseConnection {
     public Connection setConnection(){
         try{
             Class.forName("com.mysql.jdbc.Driver");
-            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/ticketms", "root", "");
+            conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/rtmsdb", "root", "");
         }catch (Exception e){
             
         }

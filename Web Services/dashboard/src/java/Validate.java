@@ -21,11 +21,10 @@ public class Validate extends HttpServlet {
 
         try {
            
-            out.println("hello");
             Class.forName("com.mysql.jdbc.Driver");
                          
 
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ticketms", "root", "");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rtmsdb", "root", "");
             
          
             
@@ -36,7 +35,7 @@ public class Validate extends HttpServlet {
             ResultSet rs = pst.executeQuery();
             
             if (rs.next()) {
-                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("home.jsp");
              rd.forward(request,response);
             } else {
                 out.println("Incorrect Login Credentials");

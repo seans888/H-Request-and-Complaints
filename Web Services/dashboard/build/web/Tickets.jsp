@@ -1,5 +1,5 @@
 <%-- 
-    Document   : index
+    Document   : Tickets
     Created on : Oct 11, 2017, 10:38:07 AM
     Author     : ZDGV
 --%>
@@ -91,7 +91,7 @@
                     String sql = "select count(*) from check_in where status = 'Active'";
                     resultSet = statement.executeQuery(sql);
                     while (resultSet.next()) {
-                        guestCount = Integer.parseInt(resultSet.getString("count(*)"));
+                        int guestCount = Integer.parseInt(resultSet.getString("count(*)"));
                     }
                     connection.close();
                 } catch (Exception e) {
