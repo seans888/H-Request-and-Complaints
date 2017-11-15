@@ -19,7 +19,7 @@
     <body class="w3-blue">
         <div class ="w3-card w3-white w3-display-middle w3-quarter">
             <h1 class="w3-center">Login</h1>
-            <form class="w3-container" action="Validate" method="POST"></br>
+            <form class="w3-container" action="Validate" method="post"></br>
 
                 <label>Username</label>
                 <input class="w3-input" type="text" name="username"></br>

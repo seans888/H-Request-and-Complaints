@@ -1,7 +1,7 @@
 <%-- 
-   Document   : index
-   Created on : Oct 11, 2017, 10:38:07 AM
-   Author     : ZDGV
+    Document   : Notification
+    Created on : Nov 15, 2017, 11:43:08 PM
+    Author     : zdgv
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -59,36 +59,27 @@
         <!-- !PAGE CONTENT! -->
         <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
+            <div class="w3-container w3-green">
+                <h2>Notification</h2>
+            </div>
+            <div class="w3-container" style="margin-bottom: 15px; padding: 4px 12px;">
 
-            <div class="w3-card">
-                <div class="w3-card-4">
+                <div class="escalated">
+                    <p>Ticket <strong>123</strong> has been <u>escalated</u></p>
+                </div>
 
-                    <div class="w3-container w3-green">
-                        <h2>Create New Ticket</h2>
-                    </div>
+                <div class="closed">
+                    <p><strong>khbariuan</strong> closed Ticket <strong>121</strong></p>
+                </div>
 
-                    <form class="w3-container" action="NewTicketz" method="POST"></br>
+                <div class="created">
+                    <p><strong>stibanez</strong> created Ticket <strong>120</strong></p>
+                </div>
 
-                        <label>Guest Name</label>
-                        <input class="w3-input" type="text" name="guestName"></br>
-
-                        <label>Room Number</label>
-                        <input class="w3-input" type="num" name="roomNum"></br>
-
-                        <label>Category</label>
-                        <input class="w3-input" type="text" name="category"></br>
-
-                        <label>Description</label>
-                        <input class="w3-input" type="text" name="dept"></br>
-
-                        <button class="w3-btn w3-blue" type="submit">Create</button></br></br>
-                    </form>
-
-                </div> 
             </div> 
 
-            <button class="w3-button w3-circle w3-grey" style="position: fixed; bottom: 20px; right: 15px; text-align: center;"><i class="material-icons">&#xe87f;</i></button>
 
+            <button class="w3-button w3-circle w3-grey" style="position: fixed; bottom: 20px; right: 15px; text-align: center;"><i class="material-icons">&#xe87f;</i></button>
             <!-- End page content -->
         </div>
 
