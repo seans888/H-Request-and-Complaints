@@ -16,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="newcss.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
@@ -221,11 +222,15 @@
                     <h4>Pending Tickets</h4>
                 </div> </br>
                 
+                
+                <!-- Housekeeping tickets -->
+                
+                
                 <% for (int i = 1; i <= hkTixCount; i++) {%>
                 <div class="w3-container w3-blue w3-padding-16">
-                    <div class="w3-left"></div>
-                    <div class="w3-right">
-                        <h3><%try {
+                    <div class="w3-left"></div><h4>
+                    <i class="material-icons">room</i>
+                        <%try {
                         connection = DriverManager.getConnection(connectionUrl, userid, password);
                         statement = connection.createStatement();
                         String sql = "Select ticket.description, room.roomno from ticket "
@@ -241,10 +246,9 @@
                         connection.close();
                     } catch (Exception e) {
                         e.printStackTrace();
-                    }%></h3>
-                    </div>
+                    }%></h4>
                     <div class="w3-clear"></div>
-                    <h4><%try {
+                    <h5><%try {
                         connection = DriverManager.getConnection(connectionUrl, userid, password);
                         statement = connection.createStatement();
                         String sql = "Select ticket.description, room.roomno from ticket "
@@ -260,10 +264,11 @@
                         connection.close();
                     } catch (Exception e) {
                         e.printStackTrace();
-                    }%></h4>
+                    }%></h5>
                 </div> </br>
                 <%}%>
             </div>
+            <!-- End of Housekeeping tickets -->
             <div class="w3-container w3-third"><h2>Food & Beverages</h2></div>
             <div class="w3-container w3-third"><h2>Engineering</h2></div>
 

@@ -68,9 +68,6 @@
 
                     <form class="w3-container" action="NewTicketz" method="POST"></br>
 
-                        <label>Guest Name</label>
-                        <input class="w3-input" type="text" name="guestName"></br>
-
                         <label>Room Number</label>
                         <input class="w3-input" type="num" name="roomNum"></br>
                         
