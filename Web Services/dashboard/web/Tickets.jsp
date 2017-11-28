@@ -14,6 +14,7 @@
     <title>Front Desk - RCTMS</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="refresh" content="5" >
     <link rel="stylesheet" href="newcss.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -109,6 +110,26 @@
 
             }
 
+            int fbTixCount = 0;
+
+            try {
+                connection = DriverManager.getConnection(connectionUrl, userid, password);
+                statement = connection.createStatement();
+                String sql = "SELECT count(*) FROM ticket "
+                        + "LEFT JOIN category ON ticket.category_id = category.id "
+                        + "WHERE category.department_id = 3";
+
+                resultSet = statement.executeQuery(sql);
+
+                while (resultSet.next()) {
+                    fbTixCount = Integer.parseInt(resultSet.getString("count(*)"));
+                }
+                connection.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+
         %>
         <!-- Top container -->
         <div class="w3-bar w3-top w3-blue w3-large" style="z-index:4">
@@ -117,7 +138,7 @@
         </div>
 
         <!-- Sidebar/menu -->
-        <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
+        <nav class="w3-sidebar w3-collapse w3-white " style="z-index:3;width:300px;" id="mySidebar"><br>
             <div class="w3-container w3-row">
                 <div class="w3-col s4">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6PTjvcbPe7Np7aF-0iyfrnehYbTDXfGNlbpmyKCFN8I47Srj2Gg" class="w3-circle w3-margin-right" style="width:46px">
@@ -221,58 +242,36 @@
                     <div class="w3-clear"></div>
                     <h4>Pending Tickets</h4>
                 </div> </br>
-<<<<<<< HEAD
-                
-                
+
+
                 <!-- Housekeeping tickets -->
-                
-                
-                <% for (int i = 1; i <= hkTixCount; i++) {%>
-                <div class="w3-container w3-blue w3-padding-16">
-                    <div class="w3-left"></div><h4>
-                    <i class="material-icons">room</i>
-                        <%try {
-                        connection = DriverManager.getConnection(connectionUrl, userid, password);
-                        statement = connection.createStatement();
-                        String sql = "Select ticket.description, room.roomno from ticket "
-                                + "LEFT JOIN category ON ticket.category_id = category.id "
-                                + "LEFT JOIN check_in ON ticket.check_in_id = check_in.id "
-                                + "LEFT JOIN room ON check_in.room_id = room.id "
-                                + "WHERE category.department_id = 1";
 
-                        resultSet = statement.executeQuery(sql);
-                        if (resultSet.absolute(i)) {
-                            out.println(resultSet.getString("roomno"));
-                        }
-                        connection.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }%></h4>
-                    <div class="w3-clear"></div>
-                    <h5><%try {
-                        connection = DriverManager.getConnection(connectionUrl, userid, password);
-                        statement = connection.createStatement();
-                        String sql = "Select ticket.description, room.roomno from ticket "
-                                + "LEFT JOIN category ON ticket.category_id = category.id "
-                                + "LEFT JOIN check_in ON ticket.check_in_id = check_in.id "
-                                + "LEFT JOIN room ON check_in.room_id = room.id "
-                                + "WHERE category.department_id = 1";
-
-                        resultSet = statement.executeQuery(sql);
-                        if (resultSet.absolute(i)) {
-                            out.println(resultSet.getString("description"));
-                        }
-                        connection.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }%></h5>
-=======
 
                 <% for (int i = 1; i <= hkTixCount; i++) {%>
-                <div class="w3-container w3-blue w3-padding-16">
-                    <div class="w3-left"></div>
-                    <div class="w3-right">
-                        <h3><%try {
+                <div class="w3-card-2 w3-white"><div class="w3-container w3-green">
+                        </br>
+                    </div><div class="w3-container w3-padding-16">
+                        <div class="w3-left"></div><h4>
+                            <i class="material-icons">room</i>
+                            <%try {
+                                    connection = DriverManager.getConnection(connectionUrl, userid, password);
+                                    statement = connection.createStatement();
+                                    String sql = "Select ticket.description, room.roomno from ticket "
+                                            + "LEFT JOIN category ON ticket.category_id = category.id "
+                                            + "LEFT JOIN check_in ON ticket.check_in_id = check_in.id "
+                                            + "LEFT JOIN room ON check_in.room_id = room.id "
+                                            + "WHERE category.department_id = 1";
+
+                                    resultSet = statement.executeQuery(sql);
+                                    if (resultSet.absolute(i)) {
+                                        out.println(resultSet.getString("roomno"));
+                                    }
+                                    connection.close();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }%></h4>
+                        <div class="w3-clear"></div>
+                        <h5><%try {
                                 connection = DriverManager.getConnection(connectionUrl, userid, password);
                                 statement = connection.createStatement();
                                 String sql = "Select ticket.description, room.roomno from ticket "
@@ -283,37 +282,80 @@
 
                                 resultSet = statement.executeQuery(sql);
                                 if (resultSet.absolute(i)) {
-                                    out.println(resultSet.getString("roomno"));
+                                    out.println(resultSet.getString("description"));
                                 }
                                 connection.close();
                             } catch (Exception e) {
                                 e.printStackTrace();
-                            }%></h3>
-                    </div>
-                    <div class="w3-clear"></div>
-                    <h4><%try {
-                            connection = DriverManager.getConnection(connectionUrl, userid, password);
-                            statement = connection.createStatement();
-                            String sql = "Select ticket.description, room.roomno from ticket "
-                                    + "LEFT JOIN category ON ticket.category_id = category.id "
-                                    + "LEFT JOIN check_in ON ticket.check_in_id = check_in.id "
-                                    + "LEFT JOIN room ON check_in.room_id = room.id "
-                                    + "WHERE category.department_id = 1";
+                            }%></h5>
 
-                            resultSet = statement.executeQuery(sql);
-                            if (resultSet.absolute(i)) {
-                                out.println(resultSet.getString("description"));
-                            }
-                            connection.close();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }%></h4>
->>>>>>> 83ab255e823a87416736f4318675d44f4f86bd73
-                </div> </br>
-                <%}%>
+                    </div></div> </br>
+                    <%}%>
             </div>
             <!-- End of Housekeeping tickets -->
-            <div class="w3-container w3-third"><h2>Food & Beverages</h2></div>
+
+
+            <!-- Food & Beverage tickets -->
+            <div class="w3-container w3-third"><h2>Food & Beverages</h2>
+                <div class="w3-container w3-blue w3-padding-16">
+                    <div class="w3-left"><i class="fa fa-ticket w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3><%
+                            out.println(fbTixCount);
+                            %></h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Pending Tickets</h4>
+                </div> </br>
+
+
+
+                <% for (int i = 1; i <= fbTixCount; i++) {%>
+                <div class="w3-card-2 w3-white"><div class="w3-container w3-green">
+                        </br>
+                    </div><div class="w3-container w3-padding-16">
+                        <div class="w3-left"></div><h4>
+                            <i class="material-icons">room</i>
+                            <%try {
+                                    connection = DriverManager.getConnection(connectionUrl, userid, password);
+                                    statement = connection.createStatement();
+                                    String sql = "Select ticket.description, room.roomno from ticket "
+                                            + "LEFT JOIN category ON ticket.category_id = category.id "
+                                            + "LEFT JOIN check_in ON ticket.check_in_id = check_in.id "
+                                            + "LEFT JOIN room ON check_in.room_id = room.id "
+                                            + "WHERE category.department_id = 3";
+
+                                    resultSet = statement.executeQuery(sql);
+                                    if (resultSet.absolute(i)) {
+                                        out.println(resultSet.getString("roomno"));
+                                    }
+                                    connection.close();
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }%></h4>
+                        <div class="w3-clear"></div>
+                        <h5><%try {
+                                connection = DriverManager.getConnection(connectionUrl, userid, password);
+                                statement = connection.createStatement();
+                                String sql = "Select ticket.description, room.roomno from ticket "
+                                        + "LEFT JOIN category ON ticket.category_id = category.id "
+                                        + "LEFT JOIN check_in ON ticket.check_in_id = check_in.id "
+                                        + "LEFT JOIN room ON check_in.room_id = room.id "
+                                        + "WHERE category.department_id = 3";
+
+                                resultSet = statement.executeQuery(sql);
+                                if (resultSet.absolute(i)) {
+                                    out.println(resultSet.getString("description"));
+                                }
+                                connection.close();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }%></h5>
+
+                    </div></div> </br>
+                    <%}%>
+            </div>
+            <!-- End of Food & Beverage Tickets -->
             <div class="w3-container w3-third"><h2>Engineering</h2></div>
 
             <button class="w3-button w3-circle w3-grey" style="position: fixed; bottom: 20px; right: 15px; text-align: center;"><i class="material-icons">&#xe87f;</i></button>

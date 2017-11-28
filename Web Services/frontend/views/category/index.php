@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'description',
             'escalation_time',
-            'department_id',
+            'department.name',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
