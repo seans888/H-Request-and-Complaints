@@ -19,17 +19,11 @@ public class Validate extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        try {
-           
+        try {           
             Class.forName("com.mysql.jdbc.Driver");
-                         
-
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/rtmsdb", "root", "");
             
-         
-            
             PreparedStatement pst = conn.prepareStatement("Select username, password from users where username=? and password=?");
-            
             pst.setString(1, username);
             pst.setString(2, password);
             ResultSet rs = pst.executeQuery();
@@ -40,7 +34,6 @@ public class Validate extends HttpServlet {
             } else {
                 out.println("Incorrect Login Credentials");
             }
-
             
             
         } catch (ClassNotFoundException | SQLException e) {

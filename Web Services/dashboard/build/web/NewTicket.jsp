@@ -1,7 +1,7 @@
- <%-- 
-    Document   : index
-    Created on : Oct 11, 2017, 10:38:07 AM
-    Author     : ZDGV
+<%-- 
+   Document   : index
+   Created on : Oct 11, 2017, 10:38:07 AM
+   Author     : ZDGV
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="newcss.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
@@ -70,20 +71,20 @@
 
                         <label>Room Number</label>
                         <input class="w3-input" type="num" name="roomNum"></br>
-                        
+
                         <label>Category</label>
                         <input class="w3-input" type="text" name="category"></br>
-                        
+
                         <label>Description</label>
                         <input class="w3-input" type="text" name="dept"></br>
-                        
+
                         <button class="w3-btn w3-blue" type="submit">Create</button></br></br>
                     </form>
 
                 </div> 
             </div> 
 
-
+            <button class="w3-button w3-circle w3-grey" style="position: fixed; bottom: 20px; right: 15px; text-align: center;"><i class="material-icons">&#xe87f;</i></button>
 
             <!-- End page content -->
         </div>

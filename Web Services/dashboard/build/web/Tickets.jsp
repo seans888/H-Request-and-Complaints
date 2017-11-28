@@ -138,7 +138,7 @@
                 <a href="home.jsp" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>  Overview</a>
                 <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-ticket"></i>  Tickets</a>
                 <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
+                <a href="Notification.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
                 <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
             </div>
         </nav>
@@ -221,6 +221,7 @@
                     <div class="w3-clear"></div>
                     <h4>Pending Tickets</h4>
                 </div> </br>
+<<<<<<< HEAD
                 
                 
                 <!-- Housekeeping tickets -->
@@ -265,6 +266,49 @@
                     } catch (Exception e) {
                         e.printStackTrace();
                     }%></h5>
+=======
+
+                <% for (int i = 1; i <= hkTixCount; i++) {%>
+                <div class="w3-container w3-blue w3-padding-16">
+                    <div class="w3-left"></div>
+                    <div class="w3-right">
+                        <h3><%try {
+                                connection = DriverManager.getConnection(connectionUrl, userid, password);
+                                statement = connection.createStatement();
+                                String sql = "Select ticket.description, room.roomno from ticket "
+                                        + "LEFT JOIN category ON ticket.category_id = category.id "
+                                        + "LEFT JOIN check_in ON ticket.check_in_id = check_in.id "
+                                        + "LEFT JOIN room ON check_in.room_id = room.id "
+                                        + "WHERE category.department_id = 1";
+
+                                resultSet = statement.executeQuery(sql);
+                                if (resultSet.absolute(i)) {
+                                    out.println(resultSet.getString("roomno"));
+                                }
+                                connection.close();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }%></h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4><%try {
+                            connection = DriverManager.getConnection(connectionUrl, userid, password);
+                            statement = connection.createStatement();
+                            String sql = "Select ticket.description, room.roomno from ticket "
+                                    + "LEFT JOIN category ON ticket.category_id = category.id "
+                                    + "LEFT JOIN check_in ON ticket.check_in_id = check_in.id "
+                                    + "LEFT JOIN room ON check_in.room_id = room.id "
+                                    + "WHERE category.department_id = 1";
+
+                            resultSet = statement.executeQuery(sql);
+                            if (resultSet.absolute(i)) {
+                                out.println(resultSet.getString("description"));
+                            }
+                            connection.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }%></h4>
+>>>>>>> 83ab255e823a87416736f4318675d44f4f86bd73
                 </div> </br>
                 <%}%>
             </div>
@@ -272,7 +316,7 @@
             <div class="w3-container w3-third"><h2>Food & Beverages</h2></div>
             <div class="w3-container w3-third"><h2>Engineering</h2></div>
 
-
+            <button class="w3-button w3-circle w3-grey" style="position: fixed; bottom: 20px; right: 15px; text-align: center;"><i class="material-icons">&#xe87f;</i></button>
             <!-- Footer -->
             <footer class="w3-container w3-padding-16 w3-light-grey">
                 <h4>FOOTER</h4>
