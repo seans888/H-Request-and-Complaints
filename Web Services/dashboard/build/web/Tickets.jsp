@@ -24,6 +24,11 @@
     </style>
     <body class="w3-light-grey">
         <%
+            session = request.getSession(false);
+            if (session.getAttribute("user") == null) {
+                String url = request.getContextPath() + "/index.jsp";
+                response.sendRedirect(url);
+            }
             String id = request.getParameter("userid");
             String driver = "com.mysql.jdbc.Driver";
             String connectionUrl = "jdbc:mysql://localhost:3306/rtmsdb";
@@ -134,20 +139,19 @@
         <!-- Top container -->
         <div class="w3-bar w3-top w3-blue w3-large" style="z-index:4">
             <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-            <span class="w3-bar-item w3-right">Logo</span>
+            <form action="Logout" method="post">
+                <span class="w3-bar-item w3-right"><button class="w3-button w3-hover-none">Logout <i class="fa fa-sign-out"></i></button></span>
+            </form>   
         </div>
 
         <!-- Sidebar/menu -->
         <nav class="w3-sidebar w3-collapse w3-white " style="z-index:3;width:300px;" id="mySidebar"><br>
             <div class="w3-container w3-row">
-                <div class="w3-col s4">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6PTjvcbPe7Np7aF-0iyfrnehYbTDXfGNlbpmyKCFN8I47Srj2Gg" class="w3-circle w3-margin-right" style="width:46px">
+                <div class="w3-col w3-center">
+                    <img src="${user.picLink}" class="w3-circle w3-margin-right" style="width:46px">
                 </div>
-                <div class="w3-col s8 w3-bar">
-                    <span>Welcome, <strong>Mia</strong></span><br>
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+                <div class="w3-col w3-center w3-bar">
+                    <span>Welcome, <strong> ${user.firstName} </strong></span><br>
                 </div>
             </div>
             <hr>
@@ -230,16 +234,13 @@
 
             </div>
 
-            <div class="w3-container w3-third">
-                <h2>Housekeeping</h2>
-                <div class="w3-container w3-blue w3-padding-16">
-                    <div class="w3-left"><i class="fa fa-ticket w3-xxxlarge"></i></div>
+            <div class="w3-container w3-third"><h2>Housekeeping</h2>
+                <div class="w3-container w3-clear w3-padding-16">
                     <div class="w3-right">
                         <h3><%
                             out.println(hkTixCount);
                             %></h3>
                     </div>
-                    <div class="w3-clear"></div>
                     <h4>Pending Tickets</h4>
                 </div> </br>
 
@@ -248,7 +249,7 @@
 
 
                 <% for (int i = 1; i <= hkTixCount; i++) {%>
-                <div class="w3-card-2 w3-white"><div class="w3-container w3-green">
+                <div class="w3-card w3-white"><div class="w3-container w3-green">
                         </br>
                     </div><div class="w3-container w3-padding-16">
                         <div class="w3-left"></div><h4>
@@ -297,14 +298,12 @@
 
             <!-- Food & Beverage tickets -->
             <div class="w3-container w3-third"><h2>Food & Beverages</h2>
-                <div class="w3-container w3-blue w3-padding-16">
-                    <div class="w3-left"><i class="fa fa-ticket w3-xxxlarge"></i></div>
+                <div class="w3-container w3-clear w3-padding-16">
                     <div class="w3-right">
                         <h3><%
                             out.println(fbTixCount);
                             %></h3>
                     </div>
-                    <div class="w3-clear"></div>
                     <h4>Pending Tickets</h4>
                 </div> </br>
 
@@ -358,7 +357,7 @@
             <!-- End of Food & Beverage Tickets -->
             <div class="w3-container w3-third"><h2>Engineering</h2></div>
 
-            <button class="w3-button w3-circle w3-grey" style="position: fixed; bottom: 20px; right: 15px; text-align: center;"><i class="material-icons">&#xe87f;</i></button>
+            <button class="w3-button material-icons w3-red w3-circle" style="position: fixed; bottom: 20px; right: 15px; text-align: center;">&#xe87f;</button>
             <!-- Footer -->
             <footer class="w3-container w3-padding-16 w3-light-grey">
                 <h4>FOOTER</h4>

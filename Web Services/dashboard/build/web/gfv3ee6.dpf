@@ -6,5 +6,13 @@
     <property name="keepgenerated" value="true">
       <description>Keep a copy of the generated servlet class' java code.</description>
     </property>
+    <error-page>
+      <error-code>404</error-code>
+      <location>/index.jsp</location>
+    </error-page>
   </jsp-config>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/index.jsp</location>
+  </error-page>
 </glassfish-web-app>

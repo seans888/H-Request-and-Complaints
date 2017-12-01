@@ -8,6 +8,9 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.Statement"%>
+<%@page import="apc.edu.ph.User"%>
+<%@ page session="true" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,6 +26,12 @@
     </style>
     <body class="w3-light-grey">
         <%
+            session = request.getSession(false);
+            if (session.getAttribute("user") == null) {
+                String url = request.getContextPath() + "/index.jsp";
+                response.sendRedirect(url);
+            }
+
             String id = request.getParameter("userid");
             String driver = "com.mysql.jdbc.Driver";
             String connectionUrl = "jdbc:mysql://localhost:3306/rtmsdb";
@@ -91,21 +100,21 @@
         %>
         <!-- Top container -->
         <div class="w3-bar w3-top w3-blue w3-large" style="z-index:4">
+            ${sessionScope.username}
             <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-            <span class="w3-bar-item w3-right">Logo</span>
+            <form action="Logout" method="post">
+                <span class="w3-bar-item w3-right"><button class="w3-button w3-hover-none">Logout <i class="fa fa-sign-out"></i></button></span>
+            </form>  
         </div>
 
         <!-- Sidebar/menu -->
         <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
             <div class="w3-container w3-row">
-                <div class="w3-col s4">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT6PTjvcbPe7Np7aF-0iyfrnehYbTDXfGNlbpmyKCFN8I47Srj2Gg" class="w3-circle w3-margin-right" style="width:46px">
+                <div class="w3-col w3-center">
+                    <img src="${user.picLink}" class="w3-circle w3-margin-right" style="width:46px">
                 </div>
-                <div class="w3-col s8 w3-bar">
-                    <span>Welcome, <strong>Mia</strong></span><br>
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
-                    <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
+                <div class="w3-col w3-center w3-bar">
+                    <span>Welcome, <strong> ${user.firstName} </strong></span><br>
                 </div>
             </div>
             <hr>
