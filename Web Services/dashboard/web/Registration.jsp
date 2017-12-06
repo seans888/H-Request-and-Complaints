@@ -25,31 +25,31 @@
                 if (form.password.value === "") {
                     alert("Password must not be blank");
                 }
-                 if (form.password.value !== form.cpassword.value) {
+                if (form.password.value !== form.cpassword.value) {
                     alert("Password did not match");
                 }
-                
+
             }
         </script>
+
+
         <div class ="w3-card w3-white w3-display-middle w3-quarter">
             <h1 class="w3-center">Register</h1>
-            <form class="w3-container" action="Process" method="get"></br>
+            <form class="w3-container" action="Register" method="get"></br>
 
-               
-                <label>Employee I.D.</label>
-                <input class="w3-input" type="text" name="employee_id"></br>
-                
                 <label>Username</label>
                 <input class="w3-input" type="text" name="username"></br>
 
                 <label>Password</label>
                 <input class="w3-input" type="text" name="password"></br>
-                
+
                 <label>Confirm Password</label>
                 <input class="w3-input" type="text" name="cpassword"></br>
+                
+                <label>Employee I.D.</label>
+                <input class="w3-input" type="text" name="employee_id"></br>
 
-
-                <button class="w3-btn w3-blue w3-block" type="submit" onclick="test(form)">Submit</button></br>
+                <button class="w3-btn w3-blue w3-block" type="submit" >Submit</button></br>
 
             </form>
         </div>

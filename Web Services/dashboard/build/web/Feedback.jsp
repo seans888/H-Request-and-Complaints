@@ -18,7 +18,13 @@
         html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </style>
     <body class="w3-light-grey">
-
+        <%
+            session = request.getSession(false);
+            if (session.getAttribute("user") == null) {
+                String url = request.getContextPath() + "/index.jsp";
+                response.sendRedirect(url);
+            }
+        %>
         <!-- Top container -->
         <div class="w3-bar w3-top w3-blue w3-large" style="z-index:4">
             <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>

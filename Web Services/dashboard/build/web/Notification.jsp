@@ -84,8 +84,8 @@
             </div> 
 
 
-            <button class="w3-button w3-circle w3-grey" style="position: fixed; bottom: 20px; right: 15px; text-align: center;"><i class="material-icons">&#xe87f;</i></button>
-            <!-- End page content -->
+ <button class="w3-button material-icons w3-red w3-circle" style="position: fixed; bottom: 20px; right: 15px; text-align: center;">&#xe87f;</button>
+ <!-- End page content -->
         </div>
 
         <script>

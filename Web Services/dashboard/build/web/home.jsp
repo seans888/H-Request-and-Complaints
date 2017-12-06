@@ -230,8 +230,7 @@
                 </div>
             </div>
             <hr>
-            <button class="w3-button w3-circle w3-grey" style="position: fixed; bottom: 20px; right: 15px; text-align: center;"><i class="material-icons">&#xe87f;</i></button>
-
+ <button class="w3-button material-icons w3-red w3-circle" style="position: fixed; bottom: 20px; right: 15px; text-align: center;">&#xe87f;</button>
             <!-- Footer -->
             <footer class="w3-container w3-padding-16 w3-light-grey">
                 <h4>FOOTER</h4>
