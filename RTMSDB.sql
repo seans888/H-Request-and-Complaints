@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2017 at 03:37 PM
+-- Generation Time: Dec 06, 2017 at 04:09 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -185,7 +185,10 @@ INSERT INTO `room` (`id`, `roomno`) VALUES
 (6, 106),
 (7, 107),
 (8, 108),
-(9, 109);
+(9, 109),
+(10, 404),
+(11, 333),
+(12, 212);
 
 -- --------------------------------------------------------
 
@@ -214,7 +217,8 @@ INSERT INTO `ticket` (`id`, `check_in_id`, `category_id`, `employee_responsible_
 (4, 5, 1, 13, 14, 1, 'Two (2) extra pillows.', '2017-10-29 23:26:49', '2017-10-29 23:26:49', 'Open'),
 (5, 10, 6, 7, 14, 1, '1 extra bed', '2017-10-30 12:33:37', '2017-10-30 12:33:37', 'Open'),
 (6, 2, 3, 13, 14, 2, 'Clean the spillage', '2017-10-30 12:34:11', '2017-10-30 12:34:11', 'Closed'),
-(7, 10, 1, 8, 14, 1, 'Replace (5) pillows', '2017-10-30 12:34:59', '2017-10-30 12:34:59', 'Open');
+(7, 10, 1, 8, 14, 1, 'Replace (5) pillows', '2017-10-30 12:34:59', '2017-10-30 12:34:59', 'Open'),
+(8, 7, 3, 7, 14, 1, 'Need ko ng water', '2017-11-28 17:10:55', '2017-11-28 17:10:55', 'Open');
 
 -- --------------------------------------------------------
 
@@ -237,15 +241,17 @@ CREATE TABLE `transcript` (
 
 CREATE TABLE `users` (
   `username` varchar(45) NOT NULL,
-  `password` varchar(45) DEFAULT NULL
+  `password` varchar(45) DEFAULT NULL,
+  `prof_pic` tinytext NOT NULL,
+  `employee_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`username`, `password`) VALUES
-('stibanez', 'qwerty');
+INSERT INTO `users` (`username`, `password`, `prof_pic`, `employee_id`) VALUES
+('stibanez', 'qwerty', 'https://scontent.fmnl4-3.fna.fbcdn.net/v/t1.0-9/19884451_1567448179940768_626013068244499668_n.jpg?oh=fd2c5c246dc211ba72b65ccb1bc439b1&oe=5AC92779', 3);
 
 --
 -- Indexes for dumped tables
@@ -312,7 +318,9 @@ ALTER TABLE `transcript`
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`username`),
+  ADD UNIQUE KEY `username` (`username`),
+  ADD KEY `employee_id` (`employee_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -347,12 +355,12 @@ ALTER TABLE `guest`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `ticket`
 --
 ALTER TABLE `ticket`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `transcript`
 --
@@ -395,6 +403,12 @@ ALTER TABLE `ticket`
 --
 ALTER TABLE `transcript`
   ADD CONSTRAINT `fk_transcript_ticket1` FOREIGN KEY (`ticket_id`) REFERENCES `ticket` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `users`
+--
+ALTER TABLE `users`
+  ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
