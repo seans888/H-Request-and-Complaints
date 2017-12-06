@@ -111,6 +111,7 @@
         <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
             <div class="w3-container w3-row">
                 <div class="w3-col w3-center">
+                    </br>
                     <img src="${user.picLink}" class="w3-circle w3-margin-right" style="width:46px">
                 </div>
                 <div class="w3-col w3-center w3-bar">
@@ -127,7 +128,7 @@
                 <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>  Tickets</a>
                 <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
                 <a href="Notification.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
+                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw"></i>  Search</a>
             </div>
         </nav>
 
@@ -146,7 +147,7 @@
             <div class="w3-row-padding w3-margin-bottom">
 
                 <div class="w3-quarter">
-                    <div class="w3-container w3-blue w3-padding-16">
+                    <div class="w3-card w3-container w3-blue w3-padding-16">
                         <div class="w3-left"><i class="fa fa-ticket w3-xxxlarge"></i></div>
                         <div class="w3-right">
                             <h3><%
@@ -159,7 +160,7 @@
                 </div>
 
                 <div class="w3-quarter">
-                    <div class="w3-container w3-green w3-padding-16">
+                    <div class="w3-card w3-container w3-green w3-padding-16">
                         <div class="w3-left"><i class="fa fa-check w3-xxxlarge"></i></div>
                         <div class="w3-right">
                             <h3><%
@@ -171,7 +172,7 @@
                     </div>
                 </div>
                 <div class="w3-quarter">
-                    <div class="w3-container w3-pink w3-padding-16">
+                    <div class="w3-card w3-container w3-pink w3-padding-16">
                         <div class="w3-left"><i class="fa fa-angle-double-up w3-xxxlarge"></i></div>
                         <div class="w3-right">
                             <h3><%
@@ -184,7 +185,7 @@
                 </div>
 
                 <div class="w3-quarter">
-                    <div class="w3-container w3-purple w3-text-white w3-padding-16">
+                    <div class="w3-card w3-container w3-purple w3-text-white w3-padding-16">
                         <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
                         <div class="w3-right">
                             <h3><%

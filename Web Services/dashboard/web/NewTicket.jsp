@@ -13,7 +13,29 @@
     <link rel="stylesheet" href="newcss.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!-- JS file -->
+    <!-- JS file -->
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script>
+        $(function () {
+            var js;
+            $.getJSON(http://localhost/backend/web/category,
+                    function (data) {
+                        js = data;
+                        // or use your data here by calling yourFunction(data);
+                    }
+            );
+            var availableTags =
+                    $("#category").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
     <style>
         html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
     </style>
@@ -24,7 +46,9 @@
                 String url = request.getContextPath() + "/index.jsp";
                 response.sendRedirect(url);
             }
+
         %>
+
         <!-- Top container -->
         <div class="w3-bar w3-top w3-blue w3-large" style="z-index:4">
             <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
@@ -53,7 +77,7 @@
                 <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>  Tickets</a>
                 <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-blue w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
                 <a href="Notification.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
+                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw"></i>  Search</a>
             </div>
         </nav>
 
@@ -65,28 +89,26 @@
         <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
 
-            <div class="w3-card">
-                <div class="w3-card-4">
+            <div class="w3-container w3-green">
+                </br><h2>Create New Ticket</h2>
+            </div>
+            <div class="w3-margin">
 
-                    <div class="w3-container w3-green">
-                        <h2>Create New Ticket</h2>
-                    </div>
 
-                    <form class="w3-container" action="NewTicketz" method="POST"></br>
+                <form class="w3-container" action="NewTicketz" method="POST"></br>
 
-                        <label>Room Number</label>
-                        <input class="w3-input" type="num" name="roomNum"></br>
+                    <label>Room Number</label>
+                    <input class="w3-input" type="num" name="roomNum"></br>
 
-                        <label>Category</label>
-                        <input class="w3-input" type="text" name="category"></br>
+                    <label>Category</label>
+                    <input id="category" class="w3-input" type="text" name="category"></br>
 
-                        <label>Description</label>
-                        <input class="w3-input" type="text" name="dept"></br>
+                    <label>Description</label>
+                    <input class="w3-input" type="text" name="dept"></br>
 
-                        <button class="w3-btn w3-blue" type="submit">Create</button></br></br>
-                    </form>
+                    <button class="w3-btn w3-blue" type="submit">Create</button></br></br>
+                </form>
 
-                </div> 
             </div> 
 
             <button class="w3-button w3-circle w3-grey" style="position: fixed; bottom: 20px; right: 15px; text-align: center;"><i class="material-icons">&#xe87f;</i></button>

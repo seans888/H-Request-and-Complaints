@@ -53,7 +53,7 @@
                 <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>  Tickets</a>
                 <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
                 <a href="#" class="w3-bar-item w3-button w3-blue w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
+                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw"></i>  Search</a>
             </div>
         </nav>
 
@@ -65,7 +65,7 @@
         <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
             <div class="w3-container w3-green">
-                <h2>Notifications</h2>
+                </br><h2>Notifications</h2>
             </div>
             <div class="w3-container" style="margin-bottom: 15px; padding: 4px 12px;">
 
