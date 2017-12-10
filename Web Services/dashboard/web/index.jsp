@@ -14,7 +14,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>RTMS Download</title>
+        <title>RTMS Login</title>
     </head>
 
     <link rel="stylesheet" href="newcss.css">
@@ -23,7 +23,6 @@
 
     <body class="w3-blue">
         <%
-            String id = request.getParameter("userid");
             String driver = "com.mysql.jdbc.Driver";
             String connectionUrl = "jdbc:mysql://localhost:3306/rtmsdb";
             String userid = "root";
@@ -36,7 +35,7 @@
             Connection connection = null;
             Statement statement = null;
             ResultSet resultSet = null;
-            User user = new User(); 
+            User user = new User();
 
             try {
                 connection = DriverManager.getConnection(connectionUrl, userid, password);
@@ -44,10 +43,10 @@
                 String sql = "Select users.username, users.password, users.employee_id,employee.firstName, employee.lastName, department.name AS department from users "
                         + "LEFT JOIN employee ON users.employee_id = employee.id "
                         + "LEFT JOIN department ON employee.department_id = department.id";
-                
+
                 resultSet = statement.executeQuery(sql);
                 while (resultSet.next()) {
-                    user.setId(resultSet.getInt("employee_id"));
+                    user.setEmpId(resultSet.getInt("employee_id"));
                     user.setUsername(resultSet.getString("username"));
                     user.setPassword(resultSet.getString("password"));
                     user.setFirstName(resultSet.getString("firstName"));
@@ -74,6 +73,8 @@
                 <button class="w3-btn w3-blue w3-block" type="submit">Login</button></br>
 
             </form>
+                            </br>
+
         </div>
     </body>
 </html>

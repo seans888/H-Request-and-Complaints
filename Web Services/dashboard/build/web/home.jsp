@@ -32,6 +32,7 @@
                 response.sendRedirect(url);
             }
 
+            User user = (User) session.getAttribute("user");
             String id = request.getParameter("userid");
             String driver = "com.mysql.jdbc.Driver";
             String connectionUrl = "jdbc:mysql://localhost:3306/rtmsdb";
@@ -112,7 +113,7 @@
             <div class="w3-container w3-row">
                 <div class="w3-col w3-center">
                     </br>
-                    <img src="${user.picLink}" class="w3-circle w3-margin-right" style="width:46px">
+                    <img src="${user.picLink}" class="w3-circle w3-image" style="width:46px">
                 </div>
                 <div class="w3-col w3-center w3-bar">
                     <span>Welcome, <strong> ${user.firstName} </strong></span><br>
@@ -128,7 +129,13 @@
                 <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>  Tickets</a>
                 <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
                 <a href="Notification.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
-                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-search fa-fw"></i>  Search</a>
+                <a href="Profile.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>  Profile</a>
+                <%
+                    if (user.getDepartment().equals("Administrator")) {
+                %>  
+                <a href="Feedbacks.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-comment fa-fw"></i>  Feedbacks</a>
+                <a href="Registration.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-address-card	 fa-fw"></i>  New User</a><%
+                    }%>
             </div>
         </nav>
 
@@ -150,8 +157,7 @@
                     <div class="w3-card w3-container w3-blue w3-padding-16">
                         <div class="w3-left"><i class="fa fa-ticket w3-xxxlarge"></i></div>
                         <div class="w3-right">
-                            <h3><%
-                                out.println(activeTix);
+                            <h3><%                                out.println(activeTix);
                                 %></h3>
                         </div>
                         <div class="w3-clear"></div>
@@ -230,8 +236,8 @@
                 </div>
             </div>
             <hr>
-            <button class="w3-button w3-circle w3-grey" style="position: fixed; bottom: 20px; right: 15px; text-align: center;"><i class="material-icons">&#xe87f;</i></button>
-
+            <button class="w3-button material-icons w3-red w3-circle w3-display-bottomright w3-margin" style="width:50px;height:50px;position:fixed;"
+                    onclick="document.getElementById('id01').style.display = 'block'"><b>!</b></button>
             <!-- Footer -->
             <footer class="w3-container w3-padding-16 w3-light-grey">
                 <h4>FOOTER</h4>
@@ -266,6 +272,26 @@
                 overlayBg.style.display = "none";
             }
         </script>
+        <!-- The Modal -->
+        <div id="id01" class="w3-modal">
+            <div class="w3-modal-content">
+                <div class="w3-card-4 test" >
 
+                    <div class="w3-container w3-red">
+                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <h2>Experienced a Problem?</h2>
+                    </div>
+
+                    <form class="w3-container" action="new_feedback" method="POST"></br>
+
+                        <label>Please tell us your experiences</label>
+                        <textarea id="feedback" class="w3-input" type="text" name="feedback"></textarea></br>
+
+                        <a href="Feedback.jsp"> <button class="w3-btn w3-blue" type="submit">Submit</button></a></br></br>
+                    </form>
+
+                </div> 
+            </div>
+        </div>
     </body>
 </html>

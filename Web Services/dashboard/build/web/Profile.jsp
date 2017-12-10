@@ -4,8 +4,9 @@
     Author     : zdgv
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page session="true" %>
 <%@page import="apc.edu.ph.User"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <title>Front Desk - RCTMS</title>
@@ -29,7 +30,7 @@
         %>
         <!-- Top container -->
         <div class="w3-bar w3-top w3-blue w3-large" style="z-index:4">
-            <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
+            <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
             <form action="Logout" method="post">
                 <span class="w3-bar-item w3-right"><button class="w3-button w3-hover-none">Logout <i class="fa fa-sign-out"></i></button></span>
             </form>
@@ -38,10 +39,9 @@
         <!-- Sidebar/menu -->
         <nav class="w3-sidebar w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidebar"><br>
             <div class="w3-container w3-row">
-                <a href="NewTicket.jsp"></a>
                 <div class="w3-col w3-center">
                     </br>
-                    <img src="${user.picLink}" class="w3-circle w3-margin-right w3-image" style="width:46px">
+                    <img src="${user.picLink}" class="w3-circle w3-margin-right" style="width:46px">
                 </div>
                 <div class="w3-col w3-center w3-bar">
                     <span>Welcome, <strong> ${user.firstName} </strong></span><br>
@@ -52,17 +52,17 @@
                 <h5>Dashboard</h5>
             </div>
             <div class="w3-bar-block">
-                <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-                <a href="home.jsp" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>  Overview</a>
-                <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>  Tickets</a>
-                <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
-                <a href="#" class="w3-bar-item w3-button w3-blue w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
-                <a href="Profile.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>  Profile</a>
-                <%
+                <a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
+                <a href="home.jsp" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>  Overview</a>
+                <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>  Tickets</a>
+                <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
+                <a href="Notification.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notifications</a>
+                <a href="Profile.jsp" class="w3-bar-item w3-button w3-blue w3-padding"><i class="fa fa-user fa-fw"></i>  Profile</a>
+                <%                    
                     if (user.getDepartment().equals("Administrator")) {
                 %>  
                 <a href="Feedbacks.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-comment fa-fw"></i>  Feedbacks</a>
-                <a href="Registration.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-address-card	 fa-fw"></i>  New User</a><%
+                <a href="Profile.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-address-card	 fa-fw"></i>  New User</a><%
                     }%>
             </div>
         </nav>
@@ -74,28 +74,28 @@
         <!-- !PAGE CONTENT! -->
         <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-            <div class="w3-container w3-green">
-                </br><h2>Notifications</h2>
+            <div class="w2-container w3-green" >
+                </br><h2 style="margin-bottom: 15px; padding: 4px 12px;">Profile</h2>
             </div>
             <div class="w3-container" style="margin-bottom: 15px; padding: 4px 12px;">
 
-                <div class="escalated w3-padding-small">
-                    <p>Ticket <strong>123</strong> has been <u>escalated</u></p>
-                </div>
-                </br>
-                <div class="closed w3-padding-small">
-                    <p><strong>khbariuan</strong> closed Ticket <strong>121</strong></p>
-                </div>
-                </br>
-                <div class="created w3-padding-small">
-                    <p><strong>stibanez</strong> created Ticket <strong>120</strong></p>
-                </div>
+
+                    <div class="w3-card-4 w3-white" style="width:92%;max-width:300px; margin-left: 300px; margin-top: 50px;" >
+                        <img src="${user.picLink}" alt="Avatar" style="width:100%;opacity:0.85">
+                        <div class="w3-container">
+                            <h4><b>${user.firstName} ${user.lastName}</b></h4>   
+                            <p>Employee ID: ${user.empId}</p>
+                            <p>Department: ${user.department}</p>    
+                        </div>
+                    </div> 
+
 
             </div> 
 
 
             <button class="w3-button material-icons w3-red w3-circle w3-display-bottomright w3-margin" style="width:50px;height:50px;position:fixed;"
-                    onclick="document.getElementById('id01').style.display = 'block'"><b>!</b></button><!-- End page content -->
+                    onclick="document.getElementById('id01').style.display = 'block'"><b>!</b></button>
+            <!-- End page content -->
         </div>
 
         <script>

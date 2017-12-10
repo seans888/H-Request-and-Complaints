@@ -4,6 +4,10 @@
     Author     : zdgv
 --%>
 
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="apc.edu.ph.User"%>
 <!DOCTYPE html>
@@ -26,6 +30,26 @@
                 response.sendRedirect(url);
             }
             User user = (User) session.getAttribute("user");
+            session = request.getSession(false);
+            if (session.getAttribute("user") == null) {
+                String url = request.getContextPath() + "/index.jsp";
+                response.sendRedirect(url);
+            }
+
+            String driver = "com.mysql.jdbc.Driver";
+            String connectionUrl = "jdbc:mysql://localhost:3306/rtmsdb";
+            String userid = "root";
+            String password = "";
+
+            try {
+                Class.forName(driver);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            Connection connection = null;
+            Statement statement = null;
+            ResultSet resultSet = null;
+            connection = DriverManager.getConnection(connectionUrl, userid, password);
         %>
         <!-- Top container -->
         <div class="w3-bar w3-top w3-blue w3-large" style="z-index:4">
@@ -56,12 +80,11 @@
                 <a href="home.jsp" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>  Overview</a>
                 <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>  Tickets</a>
                 <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
-                <a href="#" class="w3-bar-item w3-button w3-blue w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
+                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
                 <a href="Profile.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>  Profile</a>
-                <%
-                    if (user.getDepartment().equals("Administrator")) {
+                <%                    if (user.getDepartment().equals("Administrator")) {
                 %>  
-                <a href="Feedbacks.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-comment fa-fw"></i>  Feedbacks</a>
+                <a href="Feedbacks.jsp" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-comment fa-fw"></i>  Feedbacks</a>
                 <a href="Registration.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-address-card	 fa-fw"></i>  New User</a><%
                     }%>
             </div>
@@ -75,21 +98,32 @@
         <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
             <div class="w3-container w3-green">
-                </br><h2>Notifications</h2>
+                </br><h2>Feedbacks</h2>
             </div>
             <div class="w3-container" style="margin-bottom: 15px; padding: 4px 12px;">
 
-                <div class="escalated w3-padding-small">
-                    <p>Ticket <strong>123</strong> has been <u>escalated</u></p>
+                <%
+                    statement = connection.createStatement();
+                    String sql = "SELECT feedback.feedback, feedback.time, users.id, users.prof_pic ,CONCAT(employee.firstName , ' ' , employee.lastName) AS name FROM feedback "
+                            + "LEFT JOIN users ON feedback.user_id = users.id "
+                            + "LEFT JOIN employee ON users.employee_id = employee.id";
+                    resultSet = statement.executeQuery(sql);
+                    while (resultSet.next()) {
+
+                %>
+                <div class="w3-row">
+                    <div class="w3-card w3-white w3-padding-small">
+                        <div class="w3-container w3-medium">
+
+                            <div class="w3-col l1 w3-center"><img src="<%out.println(resultSet.getString("prof_pic"));%>" class="w3-circle w3-margin-right w3-image" style="width:46px;height:46px;"></br></br></div>
+                            <div class="w3-col l8"><b><%out.println(resultSet.getString("name"));%></b></br><%out.println(resultSet.getString("feedback"));%></div>
+                            <div class="w3-col l3"><div class="w3-right"><%out.println(resultSet.getString("time"));%></div></div>
+                        </div>
+                    </div>
                 </div>
-                </br>
-                <div class="closed w3-padding-small">
-                    <p><strong>khbariuan</strong> closed Ticket <strong>121</strong></p>
-                </div>
-                </br>
-                <div class="created w3-padding-small">
-                    <p><strong>stibanez</strong> created Ticket <strong>120</strong></p>
-                </div>
+                <%                    }
+                %>
+                
 
             </div> 
 

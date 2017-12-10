@@ -16,8 +16,26 @@ import java.sql.Statement;
  */
 public class User {
 
-    private String username, password, firstName, lastName, picLink;
-    private int id;
+    private String username, password, firstName, lastName, picLink, department;
+    private int userId, empId;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(int empId) {
+        this.empId = empId;
+    }
+
+    
 
     public User() {
     }
@@ -30,20 +48,14 @@ public class User {
         this.picLink = picLink;
     }
 
-    public User(int id, String username, String password, String firstName, String lastName) {
-        this.id = id;
+    public User(int user_id ,int emp_id, String username, String password, String firstName, String lastName, String department) {
+        this.userId = user_id;
+        this.empId = emp_id;
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+        this.department = department;
     }
 
     public String getUsername() {
@@ -76,6 +88,14 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+    
+     public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
     }
 
     

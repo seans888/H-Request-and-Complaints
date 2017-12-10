@@ -4,6 +4,10 @@
     Author     : zdgv
 --%>
 
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.Statement"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="apc.edu.ph.User"%>
 <!DOCTYPE html>
@@ -26,6 +30,26 @@
                 response.sendRedirect(url);
             }
             User user = (User) session.getAttribute("user");
+            session = request.getSession(false);
+            if (session.getAttribute("user") == null) {
+                String url = request.getContextPath() + "/index.jsp";
+                response.sendRedirect(url);
+            }
+
+            String driver = "com.mysql.jdbc.Driver";
+            String connectionUrl = "jdbc:mysql://localhost:3306/rtmsdb";
+            String userid = "root";
+            String password = "";
+
+            try {
+                Class.forName(driver);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+            Connection connection = null;
+            Statement statement = null;
+            ResultSet resultSet = null;
+            connection = DriverManager.getConnection(connectionUrl, userid, password);
         %>
         <!-- Top container -->
         <div class="w3-bar w3-top w3-blue w3-large" style="z-index:4">
@@ -56,13 +80,12 @@
                 <a href="home.jsp" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>  Overview</a>
                 <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>  Tickets</a>
                 <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
-                <a href="#" class="w3-bar-item w3-button w3-blue w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
+                <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
                 <a href="Profile.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>  Profile</a>
-                <%
-                    if (user.getDepartment().equals("Administrator")) {
+                <%                    if (user.getDepartment().equals("Administrator")) {
                 %>  
                 <a href="Feedbacks.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-comment fa-fw"></i>  Feedbacks</a>
-                <a href="Registration.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-address-card	 fa-fw"></i>  New User</a><%
+                <a href="Registration.jsp" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-address-card	 fa-fw"></i>  New User</a><%
                     }%>
             </div>
         </nav>
@@ -75,21 +98,50 @@
         <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
             <div class="w3-container w3-green">
-                </br><h2>Notifications</h2>
+                </br><h2>Registration</h2>
             </div>
             <div class="w3-container" style="margin-bottom: 15px; padding: 4px 12px;">
 
-                <div class="escalated w3-padding-small">
-                    <p>Ticket <strong>123</strong> has been <u>escalated</u></p>
+                <script>
+                    function test(form) {
+                        if (form.username.value === "") {
+                            alert("Username must not be blank");
+                        }
+                        if (form.password.value === "") {
+                            alert("Password must not be blank");
+                        }
+                        if (form.password.value !== form.cpassword.value) {
+                            alert("Password did not match");
+                        }
+
+                    }
+                </script>
+
+
+                <div class ="w3-card w3-white">
+                    <h1 class="w3-center">Register</h1>
+                    <form class="w3-container" action="Register" method="get"></br>
+
+                        <label>Username</label>
+                        <input class="w3-input" type="text" name="username"></br>
+
+                        <label>Password</label>
+                        <input class="w3-input" type="password" name="password"></br>
+
+                        <label>Confirm Password</label>
+                        <input class="w3-input" type="password" name="cpassword"></br>
+
+                        <label>Profile Pic Link:</label>
+                        <input class="w3-input" type="text" name="prof_pic"></br>
+
+                        <label>Employee I.D.</label>
+                        <input class="w3-input" type="text" name="employee_id"></br>
+
+                        <button class="w3-btn w3-blue w3-block" type="submit" >Submit</button></br>
+
+                    </form>
                 </div>
-                </br>
-                <div class="closed w3-padding-small">
-                    <p><strong>khbariuan</strong> closed Ticket <strong>121</strong></p>
-                </div>
-                </br>
-                <div class="created w3-padding-small">
-                    <p><strong>stibanez</strong> created Ticket <strong>120</strong></p>
-                </div>
+
 
             </div> 
 

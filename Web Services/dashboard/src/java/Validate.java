@@ -39,18 +39,20 @@ public class Validate extends HttpServlet {
         try {
             connection = DriverManager.getConnection(connectionUrl, userid, pass);
             statement = connection.createStatement();
-            String sql = "Select users.username, users.password, users.prof_pic,users.employee_id,employee.firstName, employee.lastName, department.name AS department from users "
+            String sql = "Select users.id, users.username, users.password, users.prof_pic,users.employee_id,employee.firstName, employee.lastName, department.name AS department from users "
                     + "LEFT JOIN employee ON users.employee_id = employee.id "
                     + "LEFT JOIN department ON employee.department_id = department.id WHERE users.username = '" + username + "'";
-
+           
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                user.setId(resultSet.getInt("employee_id"));
+                user.setUserId(resultSet.getInt("id "));
+                user.setEmpId(resultSet.getInt("employee_id"));
                 user.setUsername(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));
                 user.setFirstName(resultSet.getString("firstName"));
                 user.setLastName(resultSet.getString("lastName"));
                 user.setPicLink(resultSet.getString("prof_pic"));
+                user.setDepartment(resultSet.getString("department"));
                 session.setAttribute("user", user);
             }
             connection.close();
