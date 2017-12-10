@@ -1,4 +1,8 @@
+
+<<<<<<< HEAD
 //Register.java
+=======
+>>>>>>> 63dfba4bdbd13d7d18c303a9e4558aa9a0b03587
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -26,6 +30,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author zdgv
  */
+
+
 @WebServlet(urlPatterns = {"/Register"})
 public class Register extends HttpServlet {
 
@@ -66,7 +72,7 @@ public class Register extends HttpServlet {
             pst.setInt(4, employee_id);
 
             pst.execute();
-            
+
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
 
@@ -85,5 +91,6 @@ public class Register extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
+
     }
 }
