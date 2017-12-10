@@ -71,7 +71,6 @@
                 <input class="w3-input" type="password" name="password"></br>
 
                 <button class="w3-btn w3-blue w3-block" type="submit">Login</button></br>
-                <a href="Registration.jsp">Reg</a>
 
             </form>
                             </br>

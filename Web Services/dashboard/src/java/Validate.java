@@ -45,7 +45,7 @@ public class Validate extends HttpServlet {
            
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                user.setUserId(resultSet.getInt("id "));
+                user.setUserId(resultSet.getInt("id"));
                 user.setEmpId(resultSet.getInt("employee_id"));
                 user.setUsername(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));

@@ -1,8 +1,4 @@
 
-<<<<<<< HEAD
-//Register.java
-=======
->>>>>>> 63dfba4bdbd13d7d18c303a9e4558aa9a0b03587
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
