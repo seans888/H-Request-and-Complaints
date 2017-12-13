@@ -128,7 +128,7 @@
                 <a href="#" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
                 <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>  Tickets</a>
                 <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
-                <a href="Notification.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
+                <!--<a href="Notification.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>-->
                 <a href="Profile.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>  Profile</a>
                 <%
                     if (user.getDepartment().equals("Administrator")) {
@@ -238,12 +238,7 @@
             <hr>
             <button class="w3-button material-icons w3-red w3-circle w3-display-bottomright w3-margin" style="width:50px;height:50px;position:fixed;"
                     onclick="document.getElementById('id01').style.display = 'block'"><b>!</b></button>
-
-            <!-- Footer -->
-            <footer class="w3-container w3-padding-16 w3-light-grey">
-                <h4>FOOTER</h4>
-                <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-            </footer>
+            
 
 
             <!-- End page content -->

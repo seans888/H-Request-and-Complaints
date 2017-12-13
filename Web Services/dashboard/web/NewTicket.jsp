@@ -25,7 +25,8 @@
     <script>
         $(function () {
 
-            var availableTags =
+
+            var availableTags = ['Pillows', 'Airconditioner', 'Drinks', 'Lights', 'Towels', 'Bed', 'Amenity']
                     $("#category").autocomplete({
                 source: availableTags
             });
@@ -73,7 +74,7 @@
                 <a href="home.jsp" class="w3-bar-item w3-button w3-padding "><i class="fa fa-users fa-fw"></i>  Overview</a>
                 <a href="Tickets.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-ticket"></i>  Tickets</a>
                 <a href="NewTicket.jsp" class="w3-bar-item w3-button w3-blue w3-padding"><i class="fa fa-edit"></i>  New Ticket</a>
-                <a href="Notification.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>
+                <!--<a href="Notification.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bell fa-fw"></i>  Notification</a>-->
                 <a href="Profile.jsp" class="w3-bar-item w3-button w3-padding"><i class="fa fa-user fa-fw"></i>  Profile</a>
                 <%                if (user.getDepartment().equals("Administrator")) {
                 %>  
@@ -100,10 +101,10 @@
                 <form class="w3-container" action="new_ticket" method="POST"></br>
 
                     <label>Room Number</label>
-                    <input id="roomno" class="w3-input" type="num" name="roomno"></br>
+                    <input id="roomno" class="w3-input" style="width:250px" type="num" name="roomno"></br>
 
                     <label>Category</label>
-                    <input id="category" class="w3-input" type="text" name="category"></br>
+                    <input id="category" class="w3-input" style="width:500px" type="text" name="category"></br>
 
                     <label>Description</label>
                     <textarea id="description" class="w3-input" type="text" name="description"></textarea></br>
@@ -144,7 +145,7 @@
                 <div class="w3-card-4 test" >
 
                     <div class="w3-container w3-red">
-                        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+                        <span onclick="document.getElementById('id01').style.display = 'none'" class="w3-button w3-display-topright">&times;</span>
                         <h2>Experienced a Problem?</h2>
                     </div>
 
